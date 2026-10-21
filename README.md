@@ -77,7 +77,7 @@ Copilot、CodeGeeX 这类工具把「写代码」变成了复制粘贴，效率�
       <b>web-tree-sitter</b><br><sub>语法解析 · WASM</sub>
     </td>
     <td align="center" width="110">
-      <img src="https://cdn.simpleicons.org/javascript/F7DF1E" width="40" height="40" alt="JavaScript"><br>
+      <img src="https://cdn.simpleicons.org/html5/E34F26" width="40" height="40" alt="HTML5"><br>
       <b>Webview</b><br><sub>HTML / CSS / JS</sub>
     </td>
     <td align="center" width="110">
