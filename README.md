@@ -1,107 +1,99 @@
-<h1 align="center">🎓 编程学习辅助 AI Agent</h1>
+<div align="center">
 
-<p align="center">
-  <b>装进 VSCode 的学习型编程伴读 —— 不替你写代码，教你看懂代码</b>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0E7490,100:2563EB&height=200&section=header&text=Learn%20Agent&fontSize=62&fontColor=ffffff&fontAlignY=34&desc=VS%20Code%20Plugin%20%C2%B7%20Teach%2C%20don%27t%20write%20for%20me&descSize=17&descAlignY=58" width="100%" alt="Learning Agent"/>
+
+<h1>编程学习辅助 AI Agent · VS Code 插件</h1>
+
+<p>
+<b>装进 VS Code 的学习型编程伴读 —— 不替你写代码，教你看懂代码</b><br/>
+原理 → 流程 → 易错点，每一条结论都锚定到你能点回去的行号
 </p>
 
-<p align="center">
-  <a href="#-项目简介"><img src="https://img.shields.io/badge/状态-MVP%20设计中-blue?style=flat-square" alt="状态"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License"></a>
+<p>
+  <img src="https://img.shields.io/badge/状态-MVP_设计中-f59e0b?style=for-the-badge" alt="status"/>
+  <img src="https://img.shields.io/badge/平台-VS_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white" alt="VSCode"/>
+  <img src="https://img.shields.io/badge/许可-MIT-22C55E?style=for-the-badge" alt="license"/>
+  <img src="https://img.shields.io/badge/代码-尚未提交-9CA3AF?style=for-the-badge" alt="code"/>
 </p>
 
-<p align="center">
-  <a href="#-项目简介">项目简介</a> ·
-  <a href="#-功能范围">功能范围</a> ·
+<p>
+  <a href="#-为什么做">为什么做</a> ·
+  <a href="#-功能">功能</a> ·
   <a href="#-技术栈">技术栈</a> ·
-  <a href="#-架构设计">架构设计</a> ·
-  <a href="#-快速开始">快速开始</a> ·
+  <a href="#-架构">架构</a> ·
+  <a href="#-指标">指标</a> ·
   <a href="#-路线图">路线图</a>
 </p>
 
+</div>
+
 > [!IMPORTANT]
-> **当前状态：MVP 设计中。** 本仓库目前尚未提交可运行的插件工程代码。
+> **当前状态：MVP 设计中。** 本仓库尚未提交可运行的插件工程代码。
 > 下方所有功能与指标均为**设计目标**，不代表已实现的现状。首个可安装版本将随 MVP 里程碑一同提交。
 
 ---
 
-## 💡 项目简介
+## 💡 为什么做
 
-Copilot、CodeGeeX 这类工具把「写代码」变成了复制粘贴，效率上去了，但不少计算机专业学生因此失去了**读懂代码、独立排错、复盘思路**的能力。
+Copilot、CodeGeeX 这类工具把「写代码」变成了复制粘贴。效率上去了，但不少计算机专业学生因此失去了**读懂代码、独立排错、复盘思路**的能力。
 
-本项目是一个运行在 VSCode 内的**学习型**编程 Agent。它刻意与生成式工具错位竞争：
+本项目是一个跑在 VS Code 里的**学习型**编程 Agent，刻意与生成式工具错位竞争：
 
 | | GitHub Copilot / CodeGeeX | 🎓 本项目 |
-|---|---|---|
+|:--|:--|:--|
 | 核心价值 | 生成代码、提升开发效率 | 拆解代码、建立编程思维 |
 | 目标用户 | 职场开发者 | 计算机专业学生 |
 | 输出内容 | 可直接使用的成品代码 | 原理讲解、执行流程、易错点 |
 | 幻觉治理 | 提示词工程 | 结构化输入约束 + 可验证引用 |
 
-技术主张可以概括为一句话：**用本地静态解析产出确定的语法事实，让模型的推理建立在事实之上，而不是让它先猜再自我校验。**
+技术主张一句话：**用本地静态解析产出确定的语法事实，让模型的推理建立在事实之上，而不是让它先猜再自我校验。**
 
 ---
 
-## ✨ 功能范围
+## ✨ 功能
 
 | 模块 | 能力 |
-|---|---|
-| 🖥️ 侧边交互面板 | 独立的 Webview 侧边栏，常驻 IDE，支持对话渲染、模型切换、会话清空 |
-| 👁️ 项目级上下文感知 | 监听文件增删改与编辑器选区，实时感知当前项目结构 |
-| 🌳 静态语法解析 | 基于 web-tree-sitter（WASM）在本地解析语法树，脱离大模型也能拆出函数、循环、变量结构 |
-| 🧭 任务规划引擎 | 规则优先 + 模型兜底的两级路由，区分语法解析、逻辑流程、知识点、排错分析四类场景 |
-| 🎯 三路融合上下文 | 语法树提供骨架、语义检索补齐跨文件片段、LSP 提供类型与引用事实 |
-| 🧠 多层会话记忆 | 会话级窗口压缩、项目级结构化存储、长期向量检索，配套指代消解 |
-| 🧑‍🏫 学习者输出策略 | 强制「原理 → 流程 → 案例」顺序，逐行拆解、标注易错点、结论携带行号引用 |
-| 🔗 反向代码定位 | 讲解中的行号可点击，编辑器自动滚动并高亮对应行 |
-| 🔌 多模型适配 | 可插拔适配层，兼容 DeepSeek / 通义千问 / GPT 等云端 API 与 Ollama 本地模型 |
-| 📦 标准化发布 | VSIX 打包，可上架 VSCode 插件市场，日志与健康自检完备 |
+|:--|:--|
+| 🖥️ **侧边交互面板** | 独立 Webview 侧边栏，常驻 IDE，支持对话渲染、模型切换、会话清空 |
+| 👁️ **项目级上下文感知** | 监听文件增删改与编辑器选区，实时感知当前项目结构 |
+| 🌳 **静态语法解析** | 基于 web-tree-sitter（WASM）在本地解析语法树，脱离大模型也能拆出函数、循环、变量结构 |
+| 🧭 **任务规划引擎** | 规则优先 + 模型兜底的两级路由，区分语法解析、逻辑流程、知识点、排错分析四类场景 |
+| 🎯 **三路融合上下文** | 语法树提供骨架、语义检索补齐跨文件片段、LSP 提供类型与引用事实 |
+| 🧠 **多层会话记忆** | 会话级窗口压缩、项目级结构化存储、长期向量检索，配套指代消解 |
+| 🧑‍🏫 **学习者输出策略** | 强制「原理 → 流程 → 案例」顺序，逐行拆解、标注易错点、结论携带行号引用 |
+| 🔗 **反向代码定位** | 讲解中的行号可点击，编辑器自动滚动并高亮对应行 |
+| 🔌 **多模型适配** | 可插拔适配层，兼容 DeepSeek / 通义千问 / GPT 等云端 API 与 Ollama 本地模型 |
+| 📦 **标准化发布** | VSIX 打包，可上架插件市场，日志与健康自检完备 |
 
 ---
 
-<h2 align="center">🛠 技术栈</h2>
+## 🛠️ 技术栈
 
-<table align="center">
-  <tr>
-    <td align="center" width="110">
-      <img src="https://cdn.simpleicons.org/typescript/3178C6" width="40" height="40" alt="TypeScript"><br>
-      <b>TypeScript</b><br><sub>扩展宿主逻辑</sub>
-    </td>
-    <td align="center" width="110">
-      <img src="https://cdn.simpleicons.org/nodedotjs/5FA04E" width="40" height="40" alt="Node.js"><br>
-      <b>Node.js</b><br><sub>运行时</sub>
-    </td>
-    <td align="center" width="110">
-      <img src="assets/icons/tree-sitter.svg" width="40" height="40" alt="Tree-sitter"><br>
-      <b>web-tree-sitter</b><br><sub>语法解析 · WASM</sub>
-    </td>
-    <td align="center" width="110">
-      <img src="https://cdn.simpleicons.org/html5/E34F26" width="40" height="40" alt="HTML5"><br>
-      <b>Webview</b><br><sub>HTML / CSS / JS</sub>
-    </td>
-    <td align="center" width="110">
-      <img src="https://cdn.simpleicons.org/ollama/000000" width="40" height="40" alt="Ollama"><br>
-      <b>Ollama</b><br><sub>本地模型</sub>
-    </td>
-    <td align="center" width="110">
-      <img src="https://cdn.simpleicons.org/sqlite/003B57" width="40" height="40" alt="SQLite"><br>
-      <b>SQLite</b><br><sub>项目级记忆</sub>
-    </td>
-    <td align="center" width="110">
-      <img src="https://cdn.simpleicons.org/git/F05032" width="40" height="40" alt="Git"><br>
-      <b>Git + VSIX</b><br><sub>发布链路</sub>
-    </td>
-  </tr>
-</table>
+<h3 align="center">运行时与解析</h3>
 
 <p align="center">
-  <sub>解析器运行在扩展宿主内，因此业务逻辑采用 TypeScript 而非 Python；首发版本仅支持 Python 语言解析，其余语言按需下载语法包。</sub>
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
+  <img src="https://img.shields.io/badge/Node.js-5FA04E?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js"/>
+  <img src="https://img.shields.io/badge/web--tree--sitter-WASM-0E7490?style=for-the-badge" alt="tree-sitter"/>
+  <img src="https://img.shields.io/badge/LSP-类型与引用-2563EB?style=for-the-badge" alt="LSP"/>
 </p>
+
+<h3 align="center">存储与发布</h3>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/SQLite-项目级记忆-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite"/>
+  <img src="https://img.shields.io/badge/Ollama-本地模型-000000?style=for-the-badge&logo=ollama&logoColor=white" alt="Ollama"/>
+  <img src="https://img.shields.io/badge/VSIX-打包发布-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white" alt="VSIX"/>
+  <img src="https://img.shields.io/badge/Git-发布链路-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git"/>
+</p>
+
+<sub align="center">解析器运行在扩展宿主内，因此业务逻辑用 TypeScript 而非 Python；首发版本仅支持 Python 语言解析，其余语言按需下载语法包。</sub>
 
 ---
 
-## 🏗 架构设计
+## 🏗️ 架构
 
-四层解耦架构，自上而下职责递减：
+四层解耦，自上而下职责递减：
 
 ```
 ┌──────────────────────────────────────────────────────────┐
@@ -141,9 +133,27 @@ Copilot、CodeGeeX 这类工具把「写代码」变成了复制粘贴，效率�
 
 ---
 
+## 📊 设计指标
+
+以下均为**设计值，尚未实测**：
+
+| 指标 | 定义 | 目标值 |
+|:--|:--|:--|
+| 🪙 Token 节省率 | 相对全量投喂的输入 token 降幅 | ≥ 60% |
+| 🎯 检索 Recall@5 | 答案片段被召回进上下文的比例 | ≥ 85% |
+| ✅ 讲解事实准确率 | 讲解中事实陈述正确的比例 | ≥ 90% |
+| 👻 幻觉率 | 相对纯 LLM 基线的降幅 | ≥ 30% |
+| ⚡ 首 Token 延迟 | 提交问题到首个 token | P95 < 2500ms |
+| 🚀 冷启动耗时 | 插件激活到面板可用 | P95 < 1500ms |
+
+配套设计了一组**单盲对照实验**：50 段学生代码，A 组全量投喂、B 组走三路上下文管线，同一模型同一温度，3 名评分者独立打分。
+结论无论正负都会公开——把「我认为有效」变成「我验证过是否有效」。
+
+---
+
 ## 🚀 快速开始
 
-> 插件尚未发布。以下为 MVP 交付后的预期使用流程，仅供参考。
+> 插件尚未发布。以下为 MVP 交付后的预期流程，仅供参考。
 
 ```bash
 # 1. 克隆仓库
@@ -156,7 +166,7 @@ npm run compile
 # 3. 打包为可安装插件
 npx vsce package
 
-# 4. 在 VSCode 中安装生成的 .vsix
+# 4. 在 VS Code 中安装生成的 .vsix
 code --install-extension programming-learning-agent-*.vsix
 ```
 
@@ -166,23 +176,6 @@ code --install-extension programming-learning-agent-*.vsix
 ollama serve
 ollama run qwen2.5-coder
 ```
-
----
-
-## 📊 设计目标与验收指标
-
-本项目的可量化目标（**均为设计值，尚未实测**）：
-
-| 指标 | 定义 | 目标值 |
-|---|---|---|
-| 🪙 Token 节省率 | 相对全量投喂的输入 token 降幅 | ≥ 60% |
-| 🎯 检索 Recall@5 | 答案片段被召回进上下文的比例 | ≥ 85% |
-| ✅ 讲解事实准确率 | 讲解中事实陈述正确的比例 | ≥ 90% |
-| 👻 幻觉率 | 相对纯 LLM 基线的降幅 | ≥ 30% |
-| ⚡ 首 Token 延迟 | 提交问题到首个 token | P95 < 2500ms |
-| 🚀 冷启动耗时 | 插件激活到面板可用 | P95 < 1500ms |
-
-配套设计了一组**单盲对照实验**：50 段学生代码，A 组全量投喂、B 组走三路上下文管线，同一模型同一温度，3 名评分者独立打分。结论无论正负都会公开——把「我认为有效」变成「我验证过是否有效」。
 
 ---
 
@@ -208,4 +201,8 @@ ollama run qwen2.5-coder
 
 [MIT](LICENSE)
 
-<p align="center"><i>让 AI 教你怎么想，而不是替你写完。</i></p>
+<div align="center">
+
+<sub>让 AI 教你怎么想，而不是替你写完。</sub>
+
+</div>
