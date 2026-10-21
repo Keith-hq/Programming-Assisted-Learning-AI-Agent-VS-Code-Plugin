@@ -73,11 +73,11 @@ Copilot、CodeGeeX 这类工具把「写代码」变成了复制粘贴，效率�
       <b>Node.js</b><br><sub>运行时</sub>
     </td>
     <td align="center" width="110">
-      <img src="https://cdn.simpleicons.org/treesitter/0088CC" width="40" height="40" alt="Tree-sitter"><br>
+      <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='40'%20height='40'%20viewBox='0%200%2040%2040'%3E%3Crect%20x='5'%20y='3'%20width='30'%20height='10'%20rx='3'%20fill='%230088CC'/%3E%3Cpath%20d='M20%2013v5M11%2021v6M20%2021v6M29%2021v6M11%2021h18'%20stroke='%230088CC'%20stroke-width='2'%20fill='none'/%3E%3Crect%20x='2'%20y='20'%20width='13'%20height='9'%20rx='2.5'%20fill='%230088CC'/%3E%3Crect%20x='14'%20y='20'%20width='12'%20height='9'%20rx='2.5'%20fill='%230088CC'/%3E%3Crect%20x='25'%20y='20'%20width='13'%20height='9'%20rx='2.5'%20fill='%230088CC'/%3E%3Crect%20x='4'%20y='31'%20width='32'%20height='6'%20rx='2'%20fill='%230088CC'%20opacity='.45'/%3E%3C/svg%3E" width="40" height="40" alt="Tree-sitter"><br>
       <b>web-tree-sitter</b><br><sub>语法解析 · WASM</sub>
     </td>
     <td align="center" width="110">
-      <img src="https://cdn.simpleicons.org/vite/646CFF" width="40" height="40" alt="Webview"><br>
+      <img src="https://cdn.simpleicons.org/javascript/F7DF1E" width="40" height="40" alt="JavaScript"><br>
       <b>Webview</b><br><sub>HTML / CSS / JS</sub>
     </td>
     <td align="center" width="110">
