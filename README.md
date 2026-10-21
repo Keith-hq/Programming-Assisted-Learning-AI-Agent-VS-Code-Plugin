@@ -6,8 +6,6 @@
 
 <p align="center">
   <a href="#-项目简介"><img src="https://img.shields.io/badge/状态-MVP%20设计中-blue?style=flat-square" alt="状态"></a>
-  <a href="#-文档"><img src="https://img.shields.io/badge/方案-v2.0-informational?style=flat-square" alt="方案版本"></a>
-  <a href="#-技术栈"><img src="https://img.shields.io/badge/语言-Python%20(首发)-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License"></a>
 </p>
 
@@ -21,8 +19,8 @@
 </p>
 
 > [!IMPORTANT]
-> **当前状态：方案设计阶段。** 本仓库目前只包含技术方案文档，尚未提交可运行的插件工程代码。
-> 下方所有功能与指标均来自方案文档的**设计目标**，不代表已实现的现状。首个可安装版本将随 MVP 里程碑一同提交。
+> **当前状态：MVP 设计中。** 本仓库目前尚未提交可运行的插件工程代码。
+> 下方所有功能与指标均为**设计目标**，不代表已实现的现状。首个可安装版本将随 MVP 里程碑一同提交。
 
 ---
 
@@ -173,7 +171,7 @@ ollama run qwen2.5-coder
 
 ## 📊 设计目标与验收指标
 
-方案文档定义的可量化目标（**均为设计值，尚未实测**）：
+本项目的可量化目标（**均为设计值，尚未实测**）：
 
 | 指标 | 定义 | 目标值 |
 |---|---|---|
@@ -190,19 +188,11 @@ ollama run qwen2.5-coder
 
 ## 🧭 路线图
 
-- [x] v1.0 技术方案初稿
-- [x] v2.0 方案修订（更正 AST 校验表述、修正 API 命名、补充评测与风险章节）
+- [x] 架构设计与技术选型
 - [ ] **第一阶段 · MVP**：Python 单语言 + 代码解读任务 + 单云端模型 + 会话级记忆
 - [ ] 第二阶段：语义检索通路、项目级记忆
 - [ ] 第三阶段：多语言语法包、Ollama 适配、模型切换
 - [ ] 第四阶段：学习报告、错题本、知识点关联、大样本效果实验
-
----
-
-## 📚 文档
-
-- 📄 [技术方案文档 v2.0](编程学习辅助AI%20Agent（VSCode插件）项目方案文档.docx) —— 完整架构、选型论证、评测体系与风险分析
-- 📋 [开发规范](AGENTS_token.md) · [文档规范](AGENTS_docs.md)
 
 ---
 
